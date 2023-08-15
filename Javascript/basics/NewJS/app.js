@@ -66,6 +66,39 @@ const user1 = {
     id: 888, 
     isAdmin : false
 }
-
-
 console.log(user1)
+
+// *** Rest *** // 
+
+function sum(...nums){
+    return nums.reduce((count, num) =>{ 
+        return count + num; 
+    })
+}
+
+function addPrice(){
+    console.log(arguments[2]);
+    return true;
+}
+
+// *** Destructuring Arrays *** //
+
+const raceResults = ["Andrew", "Sophie", "Misa", "Ryusaki", "Matsuda", "Light"]; 
+
+const [gold, silver, bronze, ...everyoneElse] = raceResults; // Direct access
+
+
+// *** Destructuring Objects *** //
+
+const someUser = {
+    email : "misamisa@gmail.com", 
+    password : "********", 
+    firstName : "Misa", 
+    lastName : "Amane", 
+    born : 2000, 
+    bio : "Second Kira", 
+    city : "Tokyo", 
+    country: "Japan"
+}
+
+const {status = "Alive"} = someUser;
