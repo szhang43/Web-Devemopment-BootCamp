@@ -12,7 +12,6 @@ for(let i = 1; i < 151; i++){
     pokemonImg.src = `${baseURL}${[i]}.png`; //include source link
     figCaption.innerText = `#${i}`; 
 
-    pokemonContainer.style.display = "inlineBlock";
     pokemonContainer.append(pokemonImg);
     pokemonContainer.append(figCaption); 
     mainContainer.appendChild(pokemonContainer);
