@@ -103,3 +103,17 @@ heading.insertAdjacentElement("beforebegin", newHeading1);
 heading.insertAdjacentElement("afterbegin", newHeading2);
 heading.insertAdjacentElement("beforeend", newHeading3);
 heading.insertAdjacentElement("afterend", newHeading4);
+
+
+// ** Remove ** //
+
+// have to call the parent element to remove the child element //
+
+const li = document.querySelector("li"); 
+const ul = document.querySelector("ul"); 
+ul.removeChild(li)
+
+// ** newer method ** //
+
+const chickenImg = document.querySelector("img"); 
+// chickenImg.remove()

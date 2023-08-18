@@ -1,0 +1,7 @@
+div {
+    display: inline-block;
+}
+span{
+    display: block;
+    text-align: center;
+}
