@@ -1,14 +1,40 @@
-const btn = document.querySelector("#v1"); 
+// ** Helper Functions ** //
 
-// btn.onclick = function(){
-//     console.log("you clicked me!");
-// }
+function makeColor(){
+    const r = Math.floor(Math.random() * 255);
+    const g = Math.floor(Math.random() * 255);
+    const b = Math.floor(Math.random() * 255);
 
-btn.onmouseenter = function(){
-    console.log("You are hovering over me");
+    const newColor = `rgb(${r},${g},${b})`; 
+    return newColor;
+
 }
 
-btn.addEventListener("click", function(){
-    console.log("You clicked me :)");
+function applyColor(){
+    this.style.backgroundColor = makeColor();
+}
 
-})
+const btns = document.querySelectorAll("button"); 
+
+for(let btn of btns){
+    btn.addEventListener("click", applyColor);
+}
+
+// for(let btn of btns){
+//     btn.addEventListener("click", function(){
+//         const newColor = makeColor(); 
+//         console.log(newColor);
+//         btn.style.backgroundColor = newColor;
+//     })
+// }
+
+// for(let btn of btns){
+//     btn.addEventListener("click", function(){
+//         const newColor = makeColor(); 
+//         console.log(newColor);
+//         this.style.backgroundColor = newColor;
+//     })
+// }
+
+
+
