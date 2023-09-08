@@ -19,7 +19,7 @@ function deleteRow(row){
 
 function createRow(){
     const row = document.createElement("tr");  // create a new row
-    const deleteBtn = createButton();
+    const deleteBtn = createButton(); 
 
     for(let info of formInfo){ // loop through responses
         const element = document.createElement("td"); // create an individual cell

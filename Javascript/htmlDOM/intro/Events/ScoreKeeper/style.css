@@ -1,0 +1,41 @@
+img {
+    margin-top: 30px;
+    height: 25rem;
+    width: 40rem;
+}
+
+h1, p, select{
+    padding: 10px 13px;
+    text-align: center;
+}
+
+  
+.scoreCounter {
+    text-align: center;
+}
+
+span {
+    font-size: 90px;
+  }
+  
+.congratsContainer{
+    height: 200px; 
+    width: 80%;
+    border: solid 2px; 
+    margin: 0 auto;
+    background: grey;
+}
+
+
+.roundContainer {
+    text-align: center;
+    margin: 10px 13px;
+}
+
+#playerOne{
+    color: #03C04A;
+}
+
+#playerTwo{
+    color: #FE3939;
+}
