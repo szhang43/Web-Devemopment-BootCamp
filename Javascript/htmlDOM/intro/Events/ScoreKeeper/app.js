@@ -3,7 +3,7 @@ const player2 = document.querySelector("#playerTwo");
 let p1Score = 0; 
 let p2Score = 0;
 
-let gameStatus = true;
+const popup = document.querySelector(".popup")
 
 const gameRound = document.querySelector("#gameRound");
 
@@ -11,6 +11,8 @@ const playerOneBtn = document.querySelector("#addPlayerOne");
 const playerTwoBtn = document.querySelector("#addPlayerTwo");
 const resetBtn = document.querySelector("#reset"); 
 
+const mainContainer = document.querySelector(".mainContainer");
+const win = document.querySelector("#msg");
 function reset(){
         p1Score = 0
         p2Score = 0
@@ -21,24 +23,14 @@ function reset(){
 
 
 function congrats(player){
-    const mainContainer = document.createElement("div"); 
-    mainContainer.classList.add("congratsContainer")
-    const msg = document.createElement("h1"); 
-    const exit = document.createElement("button"); 
-
-    exit.innerText = "X";
-    msg.innerText = `Congrat ${player}, you won the game!`
-
-    document.body.append(mainContainer);
-    mainContainer.append(msg); 
-    mainContainer.append(exit);
-    
-    exit.addEventListener("click", function(e){
-        mainContainer.style.display = "none";
-    })
+    popup.style.display = "block";
+    popup.style.border = "solid 2px black";
+    win.innerText = `Congrats ${player}, you won the game!`
 }
 
-
+function closeCongratsPopup(){
+    popup.style.display = "none";
+}
 function addPoints(player, score){
     const rounds = parseInt(gameRound.value); 
     score += 1; 
@@ -58,8 +50,7 @@ playerOneBtn.addEventListener("click", function(e){
 
 playerTwoBtn.addEventListener("click", function(e){
     p2Score = addPoints(player2, p2Score);
-})
-
+}) 
 resetBtn.addEventListener("click", function(e){
     reset();
 })
