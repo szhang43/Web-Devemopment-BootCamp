@@ -68,8 +68,8 @@ span {
 }
 
 /* Style for the heading within the popup */
-h1 {
-    font-size: 21px;
+#msg {
+    font-size: 25px;
     color: #333; /* Text color for the heading */
 }
 
