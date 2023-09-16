@@ -76,3 +76,5 @@ const catFacts = async () => {
 
 // Call the catFacts function to retrieve and log cat facts
 catFacts();
+
+
