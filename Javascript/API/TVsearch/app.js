@@ -35,25 +35,16 @@ const createShow = (result, imgURL) => {
    mainDiv.appendChild(showContainer);
 }
 
-const noShow = (search) => {
-    const msg = document.createElement("h2"); 
-    msg.innerText = `Uh oh, no results for "${search}"`;
-    document.body.append(msg);
-    msg.id = "errorMsg";
-
-}
 
 const showDisplay = (shows, searchContent) => {
     const msg = document.querySelector("#errorMsg");
-    console.log(msg);
+    const mainDiv = document.querySelector(".container");
+    mainDiv.innerText = "";
     if(msg){
         msg.innerText = "";
     }
-    const mainDiv = document.querySelector(".container");
-
-    mainDiv.innerText = "";
     if(shows.length == 0){
-        noShow(searchContent);
+        msg.innerText = `Uh oh, no results for "${searchContent}"`;
     }   
     for(result of shows){
         const imgURL = result.show.image;
