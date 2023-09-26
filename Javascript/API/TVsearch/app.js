@@ -32,17 +32,19 @@ const createShow = (result, imgURL) => {
     showContainer.append(img);
     showContainer.append(titleTag);
 
-   mainDiv.appendChild(showContainer);
+    mainDiv.appendChild(showContainer);
 }
 
 
 const showDisplay = (shows, searchContent) => {
     const msg = document.querySelector("#errorMsg");
     const mainDiv = document.querySelector(".container");
+
     mainDiv.innerText = "";
     if(msg){
         msg.innerText = "";
     }
+
     if(shows.length == 0){
         msg.innerText = `Uh oh, no results for "${searchContent}"`;
     }   

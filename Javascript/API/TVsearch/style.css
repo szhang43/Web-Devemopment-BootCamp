@@ -15,8 +15,8 @@ body{
 }
 
 #showImg {
-    height: 358px;
-    width: 240px;
+    height: 358px !important;
+    width: 240px !important;
 }
 
 #searchForm{
@@ -73,4 +73,13 @@ body{
     color: #f0f0f0;
     text-align: center;
     padding: 15px 20px;
+}
+
+.control-container{
+    width: 75%; /* specify your width here */
+    margin: 0 auto;    
+}
+
+.container{
+    width: 100%;
 }
