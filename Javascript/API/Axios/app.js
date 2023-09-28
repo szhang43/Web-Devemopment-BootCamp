@@ -27,26 +27,29 @@ const starWars = async (id) => {
 for (let i = 2; i < 10; i++) {
     starWars(i);
 }
-
 // Get references to the HTML button and joke container elements
 const btn = document.body.querySelector(".btn"); // Select the button with the class "btn"
 const jokeDiv = document.body.querySelector(".joke"); // Select the container for displaying jokes
 
 // Define an asynchronous function to fetch a dad joke from the API
 const dadJoke = async () => {
-    // Configure the headers for the Axios request
-    const config = { headers: { Accept: 'application/json' } }; // Specify that we expect JSON as the response
-    
-    // Send an HTTP GET request to the dad joke API and return the joke
-    const response = await axios.get("https://icanhazdadjoke.com/", config); // Make a request to the dad joke API
-    return response.data.joke; // Extract the joke from the response and return it
+    try{
+        // Configure the headers for the Axios request
+        const config = { headers: { Accept: 'application/json' } }; // Specify that we expect JSON as the response
+        
+        // Send an HTTP GET request to the dad joke API and return the joke
+        const response = await axios.get("https://icanhazdadjoke.com/", config); // Make a request to the dad joke API
+        return response.data.joke; // Extract the joke from the response and return it
+    }
+    catch(error){
+        console.log(`There was an error : ${error}`)
+    }
 }
 
 // Define an asynchronous function to add a new dad joke to the HTML
 const addNewJoke = async () => {
     // Call dadJoke to fetch a new joke from the API
     const joke = await dadJoke(); // Wait for the joke to be fetched before proceeding
-    console.log(joke); // Log the joke to the console for debugging purposes
 
     // Create a new list item element for the joke
     const newJoke = document.createElement("LI"); // Create a new list item (LI) element
@@ -60,8 +63,6 @@ const addNewJoke = async () => {
 
 // Add a click event listener to the button
 btn.addEventListener("click", function(e){
-    console.log("click"); // Log a message to the console when the button is clicked
-
     // Call addNewJoke to fetch and display a new joke when the button is clicked
     addNewJoke(); // Trigger the function to fetch and display a new dad joke
 })
