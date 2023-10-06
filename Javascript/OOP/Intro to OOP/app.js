@@ -48,6 +48,9 @@ function makeColor(r, g, b){
 const navColor = makeColor(230, 126, 34);
 const logoColor = makeColor(46, 204, 113);
 
+
+/* ================ Constructor Functions ===========*/
+
 // Constructor function for creating Color objects
 function Color(r, g, b) {
     // Initialize the color object with red (r), green (g), and blue (b) components
@@ -82,3 +85,6 @@ Color.prototype.rgba = function(a = 1.0) {
 // Create a new instance of a Color object with specified RGB components
 const color1 = new Color(40, 50, 89);
 const color2 = new Color(47, 100, 70);
+
+
+
