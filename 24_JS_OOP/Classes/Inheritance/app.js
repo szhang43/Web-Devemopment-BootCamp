@@ -10,8 +10,21 @@ class Pet{
 }
 
 class Cat extends Pet{
+    constructor(name, age, lives=9){
+        super(name, age);
+        this.lives = lives;
+    }
     meow() {
         return "Meooow!"
+    }
+
+    totalLives() {
+        return `Number of lives : ${this.lives}`;
+    }
+
+    removeLives() {
+        this.lives -= 1; 
+        return `${this.lives} left`
     }
 }
 
