@@ -1,21 +1,34 @@
 const express = require('express');
 const app = express();
-const path = require('path')
-const redditData = require('./data.json');
+const path = require('path');
+const redditData = require('./data.json'); // Import data from data.json
 
-app.set('view engine', 'ejs'); 
-app.set('views', path.join(__dirname, '/views')); //Use directory name were index.js is located
+app.use(express.static('public'));
+app.set('public', path.join(__dirname, '/public'));
 
+// Set the view engine to EJS (Embedded JavaScript)
+app.set('view engine', 'ejs');
+
+// Set the views directory to the 'views' folder in the current directory
+app.set('views', path.join(__dirname, '/views'));
+
+// Define a route for the home page
 app.get('/', (req, res) => {
-    res.render("home"); // don't need to add ejs since we set views to ejs files
+    // Render the 'home' EJS template
+    res.render("home"); 
 });
 
+// Define a route for a random number page
 app.get('/rand', (req, res) => {
-    const num = Math.floor(Math.random() * 10) + 1 
-    res.render("random", {rand:num});
-})
+    // Generate a random number between 1 and 10
+    const num = Math.floor(Math.random() * 10) + 1;
+    // Render the 'random' EJS template and pass the random number as data
+    res.render("random", { rand: num });
+});
 
+// Define a route for the 'cats' page
 app.get('/cats', (req, res) => {
+    // Create an array of cat names
     const cats = [
         "Whiskers",
         "Mittens",
@@ -28,22 +41,27 @@ app.get('/cats', (req, res) => {
         "Bella",
         "Leo",
         "Misty",
-      ];
-    res.render('cats', {cats});
-})
+    ];
+    // Render the 'cats' EJS template and pass the array of cat names as data
+    res.render('cats', { cats });
+});
+
+// Define a route for subreddit pages
 app.get('/r/:subreddit', (req, res) => {
-    const {subreddit} = req.params; 
+    // Extract the subreddit parameter from the URL
+    const { subreddit } = req.params;
+    // Get data related to the specified subreddit from the 'redditData' object
     const data = redditData[subreddit];
-    // console.log({...data})
-    // console.log("________________________");
-    // console.log({data})
-    if(data){
-        res.render('subreddit', {...data});
+    if (data) {
+        // Render the 'subreddit' EJS template and pass the data related to the subreddit
+        res.render('subreddit', { ...data });
     } else {
+        // If subreddit data is not found, render the '404' EJS template
         res.render("404", { subreddit });
     }
-})
+});
 
+// Start the Express app and listen on port 3000
 app.listen(3000, () => {
-    console.log("Listening on port 3000...")
+    console.log("Listening on port 3000...");
 });

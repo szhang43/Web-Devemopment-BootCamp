@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= name %></title>
-</head>
-<body>
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+
+<div class="container">
     <h1>Browsing the <%= name %> subreddit</h1>
     <h2>Number of subscribers for this channel: <%= subscribers %></h2>
     <h3><%= description %></h3>
@@ -14,11 +10,10 @@
     <% for(let post of posts) { %>
         <article>
             <h4><%= post.title %> - <b> <%= post.author %></b></h4>
-            <% if(post.img){ %>
-                <img src=<%= post.img %>>
-            <% } %>
+                <% if(post.img){ %>
+                    <img src=<%= post.img %> class="rounded mx-auto d-block">
+                <% } %>
         </article>
     <% } %>
-
-</body>
-</html>
+</div>
+<%- include('partials/footer') %>
