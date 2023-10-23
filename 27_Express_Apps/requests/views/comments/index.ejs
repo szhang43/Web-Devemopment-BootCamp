@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Index</title>
+</head>
+<body>
+    <h1>Comment Page</h1>
+    <ul> 
+        <% for(let comment of commentData) { %>
+            <li> 
+                <a href="/comments/<%= comment.id %>">
+                    <%= comment.comment%> - <b><%= comment.username %></b>
+                </a>
+                <!-- <a href="/comments/<%= comment.id %>/edit">- Edit</a> -->
+            </li>
+        <% } %> 
+    </ul>
+    <a href="/comments/new">New Comment</a>
+</body>
+</html>
