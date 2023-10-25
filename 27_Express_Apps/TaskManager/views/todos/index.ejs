@@ -6,6 +6,16 @@
     <title>Main</title>
 </head>
 <body>
-    <h1>Todo!</h1>
+    <h1>Task List</h1>
+    <% for(let task of tasks) { %>
+        <div>
+            <p><%= task.task %> - <%= task.date %></p>
+            <p> 
+                <a href="/todos/<%= task.id %>"><%= task.description %></a>
+            </p>
+        </div>
+        <br>
+    <% } %>
+    <a href="/todos/new">New Task</a>
 </body>
 </html>
