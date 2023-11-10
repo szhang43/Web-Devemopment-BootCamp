@@ -61,6 +61,11 @@ productSchema.statics.fireSale = function () {
     return this.updateMany({}, {onSale : true , $mul : {price : 0.5} });
 };
 
+productSchema.virtual('info').get(function(){
+    return `${this.name} - ${this.price}`
+});
+
+
 //Setting up the model in mongoDB
 const Product = mongoose.model("Product", productSchema);
 
