@@ -14,6 +14,10 @@ const productSchema = new mongoose.Schema({
         type: String,
         lowercase : true, 
         enum : ['fruit', 'vegetable', 'dairy']
+    }, 
+    image : {
+        type : String, 
+        default : "https://t3.ftcdn.net/jpg/03/34/83/22/360_F_334832255_IMxvzYRygjd20VlSaIAFZrQWjozQH6BQ.jpg"
     }
 }); 
 

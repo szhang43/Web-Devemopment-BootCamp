@@ -1,0 +1,68 @@
+
+* {
+    font-family: 'Poppins', sans-serif;
+};
+
+body, html {
+    height: 100%;
+}
+
+/* Style the title */
+#title {
+    text-align: center;
+    font-size: 2em;
+    margin: 20px 25px;
+}
+
+.item-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Style each card */
+.card {
+    margin: 20px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-img-top {
+    max-height: 200px; /* Adjust as needed */
+    object-fit: cover;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card-text {
+    font-size: 1.2em;
+}
+
+.btn-light {
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+.btn-light:hover {
+    background-color: #e9ecef;
+}
+
+/* Style the "New Product" button */
+.btn-primary {
+    display: block;
+    margin: 20px auto;
+}
+
+
+.farm-stand-footer {
+    margin-top: 100px;
+    padding: 0;
+    box-sizing: border-box;
+
+}

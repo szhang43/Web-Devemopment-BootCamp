@@ -1,16 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main</title>
-</head>
-<body>
-    <h1>Farm Stand Products</h1>
-    <ul>
+<%- include('partials/head')%>
+<%- include('partials/navbar')%>
+
+<div class="container item-main-container">
+    <h1 id="title">Farm Stand Products</h1>
+    <div class="item-container">
         <% for(let item of products){ %>
-            <li><a href="/products/<%= item.id%>"><%= item.name %> - $<%= item.price %></a></li>
+            <div class="card" style="width: 18rem;">
+                <img src="<%= item.image%>" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text"><%= item.name %> - $<%= item.price %></p>
+                    <a href="/products/<%= item.id%>" class="btn btn-light">More Info</a>
+                </div>
+            </div>
         <% } %>
-    </ul>
-</body>
-</html>
+    </div>
+    <button class="btn btn-light"><a href="/products/new">Add New</a></button>
+</div>
+
+<%- include('partials/footer')%>
