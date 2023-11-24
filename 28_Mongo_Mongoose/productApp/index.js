@@ -65,3 +65,10 @@ app.get('/products/:id', async (req, res) => {
     console.log(product);
     res.render('products/show', { product });
 });
+
+app.delete('/products/:id', async(req, res) => {
+    const { id } = req.params;
+
+    const product = await Product.findByIdAndDelete(id);
+    res.redirect("/products");
+});

@@ -3,9 +3,7 @@
     font-family: 'Poppins', sans-serif;
 };
 
-body, html {
-    height: 100%;
-}
+
 
 /* Style the title */
 #title {
@@ -60,9 +58,12 @@ body, html {
 }
 
 
-.farm-stand-footer {
-    margin-top: 100px;
-    padding: 0;
-    box-sizing: border-box;
+.main-content {
+    padding: 20px;
+    /* Add styling for your main content */
+}
 
+.product-name {
+    font-family: 'Poppins', sans-serif;
+    margin: 5px 10px;
 }

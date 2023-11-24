@@ -1,11 +1,20 @@
 <%- include('partials/head')%>
 <%- include('partials/navbar')%>
-    <h1><%= product.name %></h1>
+
+<div class="container">
+    <h1 class="product-name"><%= product.name %></h1>
     <ul>
         <li><%= product.price %></li>
         <li><%= product.category %></li>
     </ul>
-    <a href="/products">back</a>
-    <a href="/products/<%= product._id%>/edit">edit</a>
 
-<%- include('partials/footer')%>
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <button class="btn btn-outline-primary"><a href="/products">back</a></button>
+        <button class="btn btn-outline-primary"><a href="/products/<%= product._id%>/edit">edit</a></button>
+        <form action="/products/<%= product._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-outline-primary">Delete</button>
+        </form>
+    </div>
+    
+</div>
+

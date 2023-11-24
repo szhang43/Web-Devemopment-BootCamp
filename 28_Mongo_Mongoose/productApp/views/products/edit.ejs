@@ -1,6 +1,7 @@
 <%- include('partials/head')%>
 <%- include('partials/navbar')%>
 
+<div class="container">
     <h1>Edit Form</h1>
     <form action="/products/<%= product._id %>?_method=PUT" method="POST">
         <label>Product Name: </label>
@@ -15,11 +16,15 @@
         <label>Category:</label>
         <select name="category">
             <% for (option of category) { %>
-                <option value="<%= option %>"><%= option %></option>
+                <option value="<%= option %>"
+                    <%= option === product.category ? 'selected' : '' %>
+                ><%= option %></option>
             <% } %>
         </select>
         <br>
         <br>
-        <button>Update</button>
+        <button class="btn btn-light">Update</button>
     </form>
-<%- include('partials/footer')%>
+    <button class="btn btn-light"><a href="/products/<%= product._id%>">back</a></button>
+
+</div>
