@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 const methodOverride = require('method-override');
+const ejsmate = require('ejs-mate');
+app.engine('ejs', ejsmate);
 
 /* Mongoose Connection & Model */
 const Campground = require("./models/campground");
