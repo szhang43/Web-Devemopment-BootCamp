@@ -31,7 +31,9 @@ app.use(methodOverride("_method"));
 // Home page - Display all available camps
 app.get('/campgrounds', async(req, res) => {
     const campgrounds = await Campground.find({});
+    // console.log("************************")
     // console.log(campgrounds);
+    // console.log("************************")
     res.render('campgrounds/index', { campgrounds });
 });
 
@@ -42,13 +44,9 @@ app.get('/campgrounds/new', (req, res) =>{
 
 //Post Request - Adds the new camp information to DB
 app.post('/campgrounds', async(req, res) => {
-    const { title, location } = req.body;
-    const newCamp = new Campground({
-        title : title, 
-        location : location
-    });
-    await newCamp.save();
-    res.redirect('campgrounds');
+    const campground = new Campground(req.body.camp);
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`)
 });
 
 // Edit Route - finds the id of camp to update

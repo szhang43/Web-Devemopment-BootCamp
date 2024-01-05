@@ -1,0 +1,33 @@
+<%- include('partials/head')%>
+<%- include('partials/navbar')%>
+
+<div class="container">
+    <h1>New Product Form</h1>
+    <form action="/products" method="POST">
+        <div class="form-group">
+    
+            <label>Product Name : </label>
+            <input name="name" type="text" class="form-control">
+            
+            <br><br>
+    
+            <label>Price : </label>
+            <input name="price" type="number">
+            
+            <br><br>
+            
+            <label>Product Name : </label>
+            <select name="category" class="form-control" id="exampleFormControlSelect1">
+                <option value = "fruit">Fruit</option>
+                <option value = "vegetable">Vegetables</option>
+                <option value = "dairy">Dairy</option>
+            </select>
+            
+            <br><br>
+            <button class="btn btn-light">Add</button>
+        </div>
+    </form>
+    <button class="btn btn-light"><a href="/products">back</a></button>
+
+</div>
+
