@@ -1,8 +1,8 @@
 <% layout('layouts/boilerplate') %>
 <div class="row mt-5">
-    <h1 class="text-center">New Campgrounds</h1>
+    <h1 class="text-center">Add new campground</h1>
     <div class="col-6 offset-3">
-        <form action="/campgrounds" method="POST"> 
+        <form action="/campgrounds" method="POST" class="validateForm" novalidate> 
             <div class="mb-3">
                 <label class="form-label" for="name" id="name">Name: </label>
                 <input 
@@ -10,7 +10,11 @@
                     class="form-control"
                     id="title-input" 
                     name="camp[title]" 
-                    placeholder="Camp Name">
+                    placeholder="Camp Name"
+                    required>
+                <div class="invalid-feedback">
+                    Please enter a valid camp name!
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location" id="location">Location: </label>
@@ -19,7 +23,11 @@
                     class="form-control"
                     id="location-input" 
                     name="camp[location]" 
-                    placeholder="City, State">
+                    placeholder="City, State"
+                    required>
+                <div class="invalid-feedback">
+                    Please enter a valid location!
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="description" id="description">Description: </label>
@@ -28,7 +36,10 @@
                     class="form-control"
                     id="location-input" 
                     name="camp[description]" 
-                    placeholder="A brief description of your visit!"></textarea>
+                    placeholder="A brief description of your visit!" required></textarea>
+                <div class="invalid-feedback">
+                    Please enter a valid camp description!
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="price" id="price">Price per Night: </label>
@@ -39,8 +50,11 @@
                         class="form-control"
                         id="location-input" 
                         name="camp[price]"
-                        placeholder="0.00">
-                    </input>
+                        placeholder="0.00"
+                        required>
+                    <div class="invalid-feedback">
+                        Please enter a valid price range!
+                    </div>
                 </div>
             </div>
             <div class="mb-3">
@@ -49,10 +63,15 @@
                     type="text" 
                     class="form-control" 
                     id="img" 
-                    name="camp[img]">
+                    name="camp[img]"
+                    required>
+                <div class="invalid-feedback">
+                    Please enter a valid img URL!
+                </div>
             </div>
             <button class="btn btn-primary mt-2">Submit</button>
         </form>
     
     </div>
 </div>
+

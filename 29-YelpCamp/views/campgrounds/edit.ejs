@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 
     <h1>Edit Your Campground</h1>
-    <form action="/campgrounds/<%= camp._id %>?_method=PUT" method="POST"> 
+    <form action="/campgrounds/<%= camp._id %>?_method=PUT" method="POST" class="validateForm" novalidate> 
         <div class="new-form">
             <label class="form-label">Name: </label>
             <input 
@@ -10,8 +10,11 @@
                 class="form-control"
                 name="camp[title]" 
                 placeholder="Camp Name"
-                value="<%= camp.title %>">
-
+                value="<%= camp.title %>"
+                required>
+            <div class="invalid-feedback">
+                Please enter a valid camp name!
+            </div>
 
             <label class="form-label">Location: </label>
             <input 
@@ -20,7 +23,11 @@
                 class="form-control"
                 name="camp[location]" 
                 placeholder="City, State"
-                value="<%= camp.location %>">
+                value="<%= camp.location %>"
+                required>
+            <div class="invalid-feedback">
+                Please enter a valid camp location!
+            </div>
         </div>
 
         <div class="mb-3">
@@ -31,7 +38,11 @@
                 id="location-input" 
                 rows="10"
                 cols="20"
-                name="camp[description]"><%= camp.description %></textarea>
+                name="camp[description]"
+                required><%= camp.description %></textarea>
+            <div class="invalid-feedback">
+                Please enter a valid camp description!
+            </div>
         </div>
         <div class="mb-3">
             <label class="form-label" for="price" id="price">Price per Night: </label>
@@ -42,8 +53,13 @@
                     class="form-control"
                     id="location-input" 
                     name="camp[price]"
-                    value="<%= camp.price %>">
+                    value="<%= camp.price %>"
+                    step="0.01"
+                    required>
                 </input>
+            <div class="invalid-feedback">
+                Please enter a valid price!
+            </div>
             </div>
         </div>
         <div class="mb-3">
@@ -53,7 +69,12 @@
                 class="form-control" 
                 id="img" 
                 name="camp[img]"
-                value="<%= camp.img %>">
+                value="<%= camp.img %>"
+                required>
+            <div class="invalid-feedback">
+                Please enter a valid img URL!
+            </div>
+        
         </div>
         <button class="btn btn-primary my-3">Update Campground</button>
 

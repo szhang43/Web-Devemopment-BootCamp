@@ -4,13 +4,14 @@
 <a href="/campgrounds/new">Add Campground</a>
 
 <% for(let camps of campgrounds) { %>
-<div class="card my-3" style="width: 18rem;">
-    <img src=<%= camps.img %> class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title"><%= camps.title %></h5>
-        <p class="card-text">Price per night : $<%= camps.price %></p>
-        <a href="/campgrounds/<%= camps.id%>" class="btn btn-primary">View</a>
+    <div class="card my-3" style="width: 20rem">
+        <img src=<%= camps.img %> class="card-img-top index-img" alt="..." 
+            style="object-fit:cover; width: 319px; height:300px">
+        <div class="card-body">
+            <h5 class="card-title"><%= camps.title %></h5>
+            <p class="card-text">Price per night : $<%= camps.price %></p>
+            <a href="/campgrounds/<%= camps.id%>" class="btn btn-primary">View</a>
+        </div>
     </div>
-  </div>
+<% } %>
 
-  <% } %>
