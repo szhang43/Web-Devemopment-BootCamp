@@ -3,7 +3,7 @@ const axios = require('axios');
 /* Mongoose Connection & Model */
 const Campground = require("../models/campground");
 const mongoose = require('mongoose'); 
-mongoose.connect('mongodb://localhost:27017/YelpCamp')
+mongoose.connect('mongodb://127.0.0.1:27017/YelpCamp')
     .then(() => {
         console.log("Mongo Connection Opened...");
     })
@@ -57,4 +57,5 @@ seedDB()
     })
 
 
+mongoose.set('debug', true);
     
