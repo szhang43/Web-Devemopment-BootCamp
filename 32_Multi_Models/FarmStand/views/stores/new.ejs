@@ -1,0 +1,42 @@
+<%- include('../partials/head')%>
+<%- include('../partials/navbar')%>
+
+
+
+<div class="container">
+    <h1>Add a new Seller</h1>
+    <form action="/stores" method="POST">
+        <div class="form-group">
+    
+            <label>Company Name: </label>
+            <input 
+                name="name" 
+                type="text"
+                class="form-control"
+                placeholder="Company Name">
+            <br><br>   
+
+            <label>Location: </label>
+            <input 
+                name="location" 
+                type="text" 
+                class="form-control"
+                placeholder="Location">
+                
+            <br><br>   
+               
+            <label>Email:</label>
+            <input 
+                name="email" 
+                type="text" 
+                class="form-control"
+                placeholder="email">
+
+            <br><br>
+            <button class="btn btn-light">Add</button>
+        </div>
+    </form>
+    <button class="btn btn-light"><a href="/products">back</a></button>
+
+</div>
+

@@ -1,0 +1,30 @@
+<%- include('./partials/head')%>
+<%- include('./partials/navbar')%>
+
+<div class="container">
+    <h1>Edit Form</h1>
+    <form action="/products/<%= product._id %>?_method=PUT" method="POST">
+        <label>Product Name: </label>
+        <input name="name"value="<%= product.name %>">
+        <br>
+        <br>
+        <label>Price: </label>
+        <input name="price" value="<%= product.price%>">
+        <br>
+        <br>
+
+        <label>Category:</label>
+        <select name="category">
+            <% for (option of category) { %>
+                <option value="<%= option %>"
+                    <%= option === product.category ? 'selected' : '' %>
+                ><%= option %></option>
+            <% } %>
+        </select>
+        <br>
+        <br>
+        <button class="btn btn-light">Update</button>
+    </form>
+    <button class="btn btn-light"><a href="/products/<%= product._id%>">back</a></button>
+
+</div>
