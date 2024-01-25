@@ -5,6 +5,7 @@ const ejsmate = require('ejs-mate');
 const joi = require("joi");
 const wrapAsync = require('./utilities/wrapAsync');
 const appError = require('./utilities/errorClass');
+const { validateCampground } = require('./validation/formValidation');
 app.engine('ejs', ejsmate);
 
 /* Mongoose Connection & Model */
@@ -29,6 +30,18 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended : true })); // Parse req.body from express 
 app.use(methodOverride("_method"));
 
+
+// Validate Form Middleware
+const validateData = (req, res, next) => {    
+    const { error } = validateCampground.validate(req.body); 
+    if(error){
+        const msg = error.details.map(el => el.message).join(",");
+        throw new appError(msg, 400);
+    } else {
+        next();
+    }
+
+}
 /* CampApp Routes */
 
 // Home page - Display all available camps
@@ -43,16 +56,8 @@ app.get('/campgrounds/new', (req, res) =>{
 })
 
 //Post Request - Adds the new camp information to DB
-app.post('/campgrounds', wrapAsync(async(req, res) => {
-	// if(!req.body.campground) throw new appError("Invalid Campground Data", 404);
-    const validateCampground = joi.object({
-        campground : joi.object({
-            title : joi.string().required(),
-            price : joi.number().required().min(0),
-            description : joi.string().required().max(500),
-            img : joi.string().required()
-        }).required()
-    });
+app.post('/campgrounds', validateData, wrapAsync(async(req, res) => {
+    //if(!req.body.camp) throw new appError("Invalid Campground Data", 404);
     const campground = new Campground(req.body.camp);
         await campground.save();
     res.redirect(`/campgrounds/${campground._id}`)
@@ -65,7 +70,7 @@ app.get('/campgrounds/:id/edit', wrapAsync(async(req, res) => {
     res.render('campgrounds/edit', { camp })
 }));
 
-app.put('/campgrounds/:id', wrapAsync(async(req, res) => {
+app.put('/campgrounds/:id', validateData, wrapAsync(async(req, res) => {
     const { id } = req.params; 
     const updateCamp = await Campground.findByIdAndUpdate(id, { ...req.body.camp });
     res.redirect('/campgrounds');
