@@ -4,6 +4,23 @@
 
 <div class="container">
     <div class="container">
-        <p><%= stores.name %></p>
+        <h1><%= store.name %></h1>
+        <p><%= store.description %></p>
+        
+    <div class="container item-main-container">
+
+        <div class="item-container">
+            <% for(let item of store.products){ %>
+            <div class="card" style="width: 18rem;">
+                <img src="<%= item.image %>" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text"><%= item.name %> - $<%= item.price %></p>
+                    <a href="/products/<%= item.id%>" class="btn btn-light">More Info</a>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    <button class="btn btn-light"><a href="/stores/<%= store._id%>/products/new">Add New</a></button>
+</div>
     </div>
 </div>

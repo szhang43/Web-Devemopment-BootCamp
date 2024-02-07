@@ -30,41 +30,56 @@ app.use(methodOverride('_method'));
 /* --------------- Express App Routes -------------------*/
 
 /*------------------Store Routes-------------------------*/
+
+// Displays all available stores
 app.get('/stores', async(req, res) => {
     const stores = await Store.find({});
     res.render('stores/index', { stores });
 });
 
+// Form to add a new store
 app.get('/stores/new', (req, res) => {
     res.render('stores/new');
 });
 
-app.get('/stores/:id', async(req, res) => {
-    const { id  } = req.params;
-    const stores = await Store.findById(id)
-    console.log(stores);
-    res.render('stores/show', { stores });
-})
-
+// Collects data from form to be added into db
 app.post('/stores', async(req, res) => {
     const store = new Store(req.body);
-    console.log(req.body)
     await store.save();
     res.redirect('stores')
 });
 
+app.get('/stores/:id', async(req, res) => {
+    const { id  } = req.params;
+    const store = await Store.findById(id).populate('products');
+    console.log(store);
+    res.render('stores/show', { store });
+})
+
+// Directs user to add new product page, including the store id
 app.get('/stores/:id/products/new', async(req, res) => {
     const { id } = req.params;
     const categories = await Product.distinct('category'); // FInds the specific category the product is linked to
-    res.render('products/new', { categories, id });
+    const store = await Store.findById(id);
+
+    res.render('products/new', { categories, store });
 });
 
-
+app.post('/stores/:id/products', async(req, res) => {
+    const { id } = req.params;
+    const store = await Store.findById(id);
+    const newProduct = new Product(req.body);
+    await newProduct.save();
+    store.products.push(newProduct);
+    newProduct.store = store;
+    await store.save();
+    await newProduct.save();
+    res.redirect(`/stores/${id}`);
+});
 /*-----------------Product Routes------------------------*/
 // Home page - Displays all product currently in db
 app.get('/products', async (req, res) => {
     const products = await Product.find({}); //Get all products in the db
-    console.log(products);
     res.render('products/index', { products });
 });
 
@@ -73,7 +88,6 @@ app.get('/products', async (req, res) => {
 // Create a new store Page 
 app.get('/products/new', wrapAsync(async(req, res) => {
     // throw new appError("Not allowed", 401)
-    
      const categories = await Product.distinct('category'); // FInds the specific category the product is linked to
     res.render("products/new", { categories });
 }));
@@ -125,11 +139,12 @@ app.put('/products/:id', wrapAsync(async(req, res, next) => {
 app.get('/products/:id', wrapAsync(async (req, res, next) => {
         const { id } = req.params;
         const product = await Product.findById(id);
-        // console.log(product);
+        let store = await Store.findById(product.store);
+        if(!store) store = ""
         if(!product){
             return next(new appError("Product not found...", 404));
         }
-        res.render('products/show', { product });
+        res.render('products/show', { product, store });
 }));
 
 // Delete a single product
