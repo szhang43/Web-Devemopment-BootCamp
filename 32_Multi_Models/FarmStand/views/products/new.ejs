@@ -1,7 +1,7 @@
 
 <div class="container">
     <h1>New Product Form</h1>
-    <form action="/products" method="POST">
+    <form action="stores/<%= id %>/products" method="POST">
         <div class="form-group">
     
             <label>Product Name : </label>
@@ -16,9 +16,9 @@
             
             <label>Product Name : </label>
             <select name="category" class="form-control" id="exampleFormControlSelect1">
-                <option value = "fruit">Fruit</option>
-                <option value = "vegetable">Vegetables</option>
-                <option value = "dairy">Dairy</option>
+                <% for(let category of categories) { %>
+                    <option><%= category %></option>
+                <% } %>
             </select>
             
             <br><br>

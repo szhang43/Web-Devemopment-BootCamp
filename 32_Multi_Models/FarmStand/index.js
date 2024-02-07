@@ -30,13 +30,35 @@ app.use(methodOverride('_method'));
 /* --------------- Express App Routes -------------------*/
 
 /*------------------Store Routes-------------------------*/
+app.get('/stores', async(req, res) => {
+    const stores = await Store.find({});
+    res.render('stores/index', { stores });
+});
+
 app.get('/stores/new', (req, res) => {
     res.render('stores/new');
 });
 
+app.get('/stores/:id', async(req, res) => {
+    const { id  } = req.params;
+    const stores = await Store.findById(id)
+    console.log(stores);
+    res.render('stores/show', { stores });
+})
+
 app.post('/stores', async(req, res) => {
-    res.send(req.body);   
+    const store = new Store(req.body);
+    console.log(req.body)
+    await store.save();
+    res.redirect('stores')
 });
+
+app.get('/stores/:id/products/new', async(req, res) => {
+    const { id } = req.params;
+    const categories = await Product.distinct('category'); // FInds the specific category the product is linked to
+    res.render('products/new', { categories, id });
+});
+
 
 /*-----------------Product Routes------------------------*/
 // Home page - Displays all product currently in db
@@ -48,13 +70,15 @@ app.get('/products', async (req, res) => {
 
 
 /* -------------------- New Product ------------------*/
-// Create a new product Page 
-app.get('/products/new', (req, res) => {
+// Create a new store Page 
+app.get('/products/new', wrapAsync(async(req, res) => {
     // throw new appError("Not allowed", 401)
-    res.render("products/new");
-});
+    
+     const categories = await Product.distinct('category'); // FInds the specific category the product is linked to
+    res.render("products/new", { categories });
+}));
 
-// Adds the newly created product into the database 
+// Adds the newly created store into the database 
 app.post('/products', wrapAsync(async(req, res, next) => {
     // const {name, price, category} = req.body; 
     try{
@@ -65,6 +89,10 @@ app.post('/products', wrapAsync(async(req, res, next) => {
         next(err); // Doesn't console log anything - undefined
     }
 }));
+app.get('/stores/:id/products/new', (req, res) => {
+    const { id } = req.params;
+    res.render('products/new', { category, id })
+})
 
 /* -------------------Edit Product --------------------*/
 // Edit a single product - Edit Form 

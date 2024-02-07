@@ -3,7 +3,7 @@
 
 
 
-<div class="container">
+<div class="container mt-4">
     <h1>Add a new Seller</h1>
     <form action="/stores" method="POST">
         <div class="form-group">
@@ -33,7 +33,16 @@
                 placeholder="email">
 
             <br><br>
-            <button class="btn btn-light">Add</button>
+
+        
+            <label>Description: </label>
+            <textarea
+                type="text" 
+                class="form-control"
+                name="description" 
+                placeholder="A brief description of your visit!"></textarea>
+            </div>
+            <button class="btn btn-light mt-4">Add</button>
         </div>
     </form>
     <button class="btn btn-light"><a href="/products">back</a></button>

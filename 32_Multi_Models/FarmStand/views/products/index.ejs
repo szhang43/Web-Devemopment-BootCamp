@@ -6,7 +6,7 @@
     <div class="item-container">
         <% for(let item of products){ %>
             <div class="card" style="width: 18rem;">
-                <img src="<%= item.image%>" class="card-img-top">
+                <img src="<%= item.image %>" class="card-img-top">
                 <div class="card-body">
                     <p class="card-text"><%= item.name %> - $<%= item.price %></p>
                     <a href="/products/<%= item.id%>" class="btn btn-light">More Info</a>
