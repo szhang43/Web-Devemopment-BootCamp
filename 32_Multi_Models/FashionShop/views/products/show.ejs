@@ -3,7 +3,7 @@
 
 <div class="container">
     <h1><%= product.name %></h1>
-    <p><b><%= store.name %></b></p>
+    <a href="/stores/<%= store._id %>"><%= store.name %></a>
     <ul>
         <li><%= product.price %></li>
         <li><%= product.category %></li>

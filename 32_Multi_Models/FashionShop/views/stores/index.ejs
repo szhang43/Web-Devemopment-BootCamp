@@ -7,11 +7,14 @@
             <%= store.location %>
         </div>
         <div class="card-body">
-        <h2 class="card-title"> <%= store.name %> </h2>
-        <p class="card-text"><%= store.description %></p>
-        <p class="card-text"><%= store.email %></p>
-        <p><%= store._id %></p>
-        <a href="/stores/<%= store._id %>" class="btn btn-primary">View Store</a>
+            <h2 class="card-title"> <%= store.name %> </h2>
+            <p class="card-text"><%= store.description %></p>
+            <p class="card-text"><%= store.email %></p>
+            <p><%= store._id %></p>
+            <a href="/stores/<%= store._id %>" class="btn btn-primary">View Store</a>
+            <form action="/stores/<%= store._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">Remove Store</button>
+            </form>
         </div>
     </div>
 <% } %>
